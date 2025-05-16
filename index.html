@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Sort Visualizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quick Sort Visualizer</h1>
+        
+        <div class="controls">
+            <div class="input-group">
+                <label for="array-input">Enter numbers (comma-separated):</label>
+                <input type="text" id="array-input" placeholder="e.g., 64, 34, 25, 12, 22, 11, 90">
+            </div>
+            <div id="complexity-analysis" style="margin-bottom: 1rem; font-weight: bold; color: #c0392b; text-align: center;">Expected Time Complexity: </div>
+            
+            <div class="button-group">
+                <button id="generate-random">Generate Random Array</button>
+                <button id="best-case">Best Case Input</button>
+                <button id="worst-case">Worst Case Input</button>
+                <button id="start-sort">Start Sorting</button>
+                <button id="reset">Reset</button>
+            </div>
+            
+            <div class="metrics" style="margin-bottom:1rem; display:flex; gap:2rem;">
+                <div>Comparisons: <span id="comparison-count">0</span></div>
+                <div>Swaps: <span id="swap-count">0</span></div>
+            </div>
+            
+            <div class="speed-control">
+                <label for="speed">Animation Speed:</label>
+                <input type="range" id="speed" min="1" max="10" value="5">
+            </div>
+        </div>
+        
+        <div class="visualization">
+            <div id="array-container"></div>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #3498db;"></div>
+                    <span>Normal</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #e74c3c;"></div>
+                    <span>Pivot</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #f1c40f;"></div>
+                    <span>i pointer</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #2ecc71;"></div>
+                    <span>j pointer</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #9b59b6;"></div>
+                    <span>Comparing</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #27ae60;"></div>
+                    <span>Sorted</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="step-info">
+            <h3>Current Step:</h3>
+            <p id="step-description">Waiting to start...</p>
+        </div>
+        
+        <div class="info-panel">
+            <h2>Quick Sort Algorithm</h2>
+            <div class="info-content info-grid">
+                <div class="info-section how-it-works">
+                    <h3>How it works</h3>
+                    <ol>
+                        <li>Choose a pivot element (<b>now the first element</b>)</li>
+                        <li>Partition the array:
+                            <ul>
+                                <li>i pointer: scans from left, moves right for elements ≤ pivot</li>
+                                <li>j pointer: scans from right, moves left for elements > pivot</li>
+                            </ul>
+                        </li>
+                        <li>Swap elements at i and j as needed</li>
+                        <li>Place pivot in its correct position</li>
+                        <li>Recursively sort left and right subarrays</li>
+                    </ol>
+                </div>
+                <div class="info-section theoretical-analysis">
+                    <h3>Theoretical Analysis</h3>
+                    <ul>
+                        <li><b>Best Case:</b> Pivot always splits array into two equal halves.<br>Recurrence: T(n) = 2T(n/2) + O(n) ⇒ <b>O(n log n)</b></li>
+                        <li><b>Worst Case:</b> Pivot is always the smallest/largest element (e.g., sorted array or all equal).<br>Recurrence: T(n) = T(n-1) + O(n) ⇒ <b>O(n²)</b></li>
+                        <li><b>Average Case:</b> <b>O(n log n)</b></li>
+                    </ul>
+                </div>
+                <div class="info-section comparison-table">
+                    <h3>Comparison Table</h3>
+                    <table style="width:100%;border-collapse:collapse;text-align:left;">
+                        <tr style="background:#f1f1f1;"><th style="padding:6px;">Case</th><th style="padding:6px;">Time Complexity</th><th style="padding:6px;">Example Input</th></tr>
+                        <tr><td style="padding:6px;">Best</td><td style="padding:6px;">O(n log n)</td><td style="padding:6px;">Random/Median Pivot</td></tr>
+                        <tr><td style="padding:6px;">Average</td><td style="padding:6px;">O(n log n)</td><td style="padding:6px;">Random Input</td></tr>
+                        <tr><td style="padding:6px;">Worst</td><td style="padding:6px;">O(n²)</td><td style="padding:6px;">Sorted/Reverse/All Equal Array</td></tr>
+                    </table>
+                </div>
+                <div class="info-section time-complexity">
+                    <h3>Time Complexity</h3>
+                    <ul>
+                        <li>Best Case: O(n log n)</li>
+                        <li>Average Case: O(n log n)</li>
+                        <li>Worst Case: O(n²)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="info-bottom-row">
+                <div class="info-section space-complexity">
+                    <h3>Space Complexity</h3>
+                    <p>O(log n) for recursion stack</p>
+                </div>
+                <div class="info-section stability">
+                    <h3>Stability</h3>
+                    <p>Not Stable</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="quicksort.js"></script>
+</body>
+</html> 
